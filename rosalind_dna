@@ -1,0 +1,22 @@
+# The DNA sequence provided by Rosalind goes here
+dna_sequence = "XXX"
+
+# Setting up the counters for each base
+numA = 0
+numC = 0
+numG = 0
+numT = 0
+
+#Looping through each letter in the string for base in dna_sequence
+for base in dna_sequence:
+    if base == 'A':
+        numA += 1
+    elif base == 'C':
+        numC += 1
+    elif base == 'G':
+        numG += 1
+    elif base == 'T':
+        numT += 1
+
+# Prints out the results exactly how Rosalind wants it 
+print(numA, " ", numC, " ", numG, " ", numT)
