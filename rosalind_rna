@@ -1,7 +1,7 @@
 # The DNA strand from Rosalind goes here
 dna_strand = "XXX"
 
-# REplace all the T's with U's 
+# Replace all the T's with U's 
 def dna_strandTranscribe(rna_strand):
   rna_strand = rna_strand.replace ("T", "U")
   return rna_strand
