@@ -1,2 +1,2 @@
-# Rosalind_Bioinformatics_Stronghold
-Solutions for the Bioinformatics Stronghold Problems from Rosalind
+# Rosalind Bioinformatic Stronghold
+My way of solving the Bioinformatics Stronghold Problems from Rosalind
