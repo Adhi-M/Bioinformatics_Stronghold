@@ -1,0 +1,45 @@
+# Copy and paste your dataset inside the triple quotes
+fasta_data = """
+XXX
+"""
+
+
+# Keep track of the absolute highest strand label we  find
+highest_id = ""
+highest_gc = 0.0
+
+# Split the giant text block into separate lines
+lines =  fasta_data.strip().split("\n")
+
+current_id = ""
+current_seq = ""
+
+# Empty indicator line so the loop knows to process the very last sequence
+lines.append(">END")
+
+
+for line in lines: 
+        if line.startswith(">"):
+            # Calculates the GC percentage before moving to the next one if we have already collected a sequence
+            if current_seq != "":
+                g_count = current_seq.count("G")
+                c_count = current_seq.count("C")
+                total_bases = len(current_seq)
+                
+                # Formula for percentage
+                gc_percentage = ((g_count + c_count)  / total_bases)
+                
+                if gc_percentage > highest_gc:
+                    highest_gc = gc_percentage
+                    highest_id = current_id
+                   
+            # Saves the new ID and resets the sequence collector
+            current_id = line.replace(">", "")
+            current_seq = ""
+        else:
+            # If the line doesn't start with ">", then it's part of the DNA sequence, so add it
+            current_seq += line.strip()
+
+# Print the final winning label and its score
+print(highest_id)
+print(f"{highest_gc:.8}")
