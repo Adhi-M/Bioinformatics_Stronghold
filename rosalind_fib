@@ -1,0 +1,21 @@
+# The data set Rosalind gives you (n = month and k = pairs per litter)
+# For the example n = 5 and k = 3. 
+n = 5 
+k = 3
+
+# Month  1 and Month 2 always start with 1 pair of rabbits
+minus_two_months = 1
+minus_one_month = 1 
+
+# If n is 1 or 2, the answer is just 1
+current_rabbits = 1 
+
+# Loop starting from month 3 through month n
+
+for month in range (3, n + 1):
+  current_rabbits = minus_one_month + (minus_two_months * k)
+  minus_two_months = minus_one_month
+  minus_one_month = current_rabbits
+
+# Print out the final total
+print(current_rabbits)
