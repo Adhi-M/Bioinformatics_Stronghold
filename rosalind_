@@ -1,0 +1,28 @@
+# The RNA sequence given by Rosalind 
+rna_string = "XXX"
+
+# A dictionary mapping every 3-letter codon to its protein letter
+codon_table = {
+    --------------------------------------------------------------------
+}
+
+# Holds our final protein chain 
+protein_string = ""
+
+# Loop through the string, jumping 3 steps each time. range (start, stop, step)
+for i in range (0, len(rna_string), 3)
+    # Grab a 3-letter chunk
+    codon = rna_string[i:i+3]
+    
+    # Looks it up in our dictionary 
+    amino_acid = codon_table[codon]
+    
+    # If it hits a "Stop" codon, it stops
+    if amino_acid == "Stop":
+        break
+    else:
+        # Otherwise, keep adding the protein letter to our final chain
+        protein_string += amino_acid
+
+# Print out the final answer
+print(protein_string)
