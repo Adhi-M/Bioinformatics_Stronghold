@@ -1,0 +1,29 @@
+# The three numbers given by Rosalind 
+k = X # Homozygous dominant (AA)
+m = X  # Heterozygous (Aa)
+n = X #Homozygous recessive (aa)
+
+# Total number of organisms in the population
+total = k + m + n
+
+# Calculates the chances of picking two homozygous recessive organisms (n and n)
+# First pick is n/total. Second one has one less recessive and one less total organism
+both_recessive = (n / total) * ((n - 1 ) / (total - 1))
+
+# Calculates the chances of picking one hetero (m)and one recessive (n)
+# There is a 50% (0.5) chance their kid is recessive (aa)
+# Multiplying by 2 because you could pick m then n OR n then m
+hetero_and_recessive = 2 * (m / total) * (n / (total - 1)) * 0.5
+
+# Calculate the chance of picking two hetero organisms (m and m)
+# There is a 25% (0.25) chance their kid is recessive (aa)
+both_hetero = (m / total) * ((m - 1) / (total - 1)) * 0.25
+
+# Total probability of getting a recessive kid 
+total_recessive_chance = both_revcessive + hetero_and_recessive + both_hetero
+
+# Chance of a dominant kid
+dominant_chance = 1 - total_recessive_chance
+
+# Prints the final result
+print(f"{dominant_chance:.5f}")
