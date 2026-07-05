@@ -1,0 +1,15 @@
+# The two DNA strings from the Rosalind dataset
+s = "XXX"
+t = "XXX"
+
+# Counter to  keep track  of differences 
+mismatches = 0 
+
+# Loop through every letter position using its index number 
+for i in range(len(s)):
+    # If the letter in s doesn't match the letter in t at the same position
+    if s[i] != t[i]:
+        mismatches += 1
+
+# Print the final score 
+print(mismatches)
