@@ -5,16 +5,19 @@ rna_string = "XXX"
 codon_table = {
     "UUU" : "F", "UUC" : "F", "UUA" : "L",
     "UCU" : "S", "UCC" : "S", "UCA" : "S",
-    "UAU" : "Y", "UAC" : "Y", "UAA" : "STOP", "UAG" : "STOP"
-    "UGU" : "C", "UGC" : "C", "UGA" : "STOP", "UGG" : "W"
+    "UAU" : "Y", "UAC" : "Y", "UAA" : "STOP", "UAG" : "STOP",
+    "UGU" : "C", "UGC" : "C", "UGA" : "STOP", "UGG" : "W",
+    
     "CUU" : "L", "CUC" : "L", "CUA" : "L",
     "CCU" : "P", "CCC" : "P", "CCA" : "P",
     "CAU" : "H", "CAC" : "H", "CAA" : "Q",
     "CGU" : "R", "CGC" : "R", "CGA" : "R",
+    
     "AUU" : "I", "AUC" : "I", "AUA" : "I",
     "ACU" : "T", "ACC" : "T", "ACA" : "T",
     "AAU" : "N", "AAC" : "N", "AAG" : "K",
     "AAA" : "K", "AGU" : "S", "AGC" : "S",
+    
     "GUU" : "V", "GUC" : "V", "GUA" : "V",
     "GCU" : "A", "GCC" : "A", "GCA" : "A",
     "GAU" : "D", "GAC" : "D", "GAA" : "E",
@@ -25,7 +28,7 @@ codon_table = {
 protein_string = ""
 
 # Loop through the string, jumping 3 steps each time. range (start, stop, step)
-for i in range (0, len(rna_string), 3)
+for i in range (0, len(rna_string), 3):
     # Grab a 3-letter chunk
     codon = rna_string[i:i+3]
     
