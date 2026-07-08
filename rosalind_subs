@@ -1,0 +1,19 @@
+# The two DNA strings from Rosalind
+s = "XXX"
+t = "XXX"
+
+# Finds the length of both strings
+len_s = len(s)
+len_t = len(t)
+
+# Loops through the large string, but stops early enough so that the small string can fit 
+for i in range(len_s - len_t + 1):
+    # Grabs a slice of string 's' that is the exact same length as 't'
+    current_piece = s[i : i + len_t]
+    
+    # Checks if the piece matches our motif perfectly
+    if current_piece == t:
+        # Prints the position, and we add 1 because Rosalind uses 1 based counting 
+        print(i + 1, end=" ")
+        
+print()
