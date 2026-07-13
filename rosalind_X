@@ -1,0 +1,80 @@
+# Rosalind's dataset here
+dataset = """
+XXX
+"""
+
+# Split the text into separate lines. Makes it easier to read.
+lines = dataset.split("\n")
+dna_strings = []
+current_dna = ""
+
+# Loop through the lines to separate the DNA strings from the >Rosalind names
+for line in lines:
+  if line.startswith(">"):
+  # If we hit a new name and already have DNA saved, add it to our list
+  if current_dna != "":
+  dna_strings.append(current_dna)
+  current_dna = ""
+  else:
+  # Combine lines if a DNA string is split on multiple lines
+  current_dna = current_dna + line.strip()
+  # Add the very last DNA string to our list
+  if current_dna != "":
+  dna_strings.append(current_dna)
+
+# Finds out how long each DNA string is
+string_length = len(dna_strings[0])
+
+# Creates lists of zeros for our counts 
+a_counts = [0] * string_length
+c_counts = [0] * string_length
+g_counts = [0] * string_length
+t_counts = [0] * string_length
+
+# Go through every DNA string and count letters at each position
+for dna in dna_strings:
+  for i in range(string_length):
+    letter = dna[i]
+  if letter == "A":
+    a_counts[i] = a_counts[i] + 1
+  elif letter == "C":
+    c_counts[i] = c_counts[i] + 1
+  elif letter == "G":
+    g_counts[i] = g_counts[i] + 1
+  elif letter == "T":
+    t_counts[i] = t_counts[i] + 1
+
+# The most common letter at each position
+consensus_string = ""
+
+for i in range(string_length):
+  # Assumes 'A' is the biggest first, then compares with others
+  biggest_count = a_counts[i]
+  winner_letter = "A"
+if c_counts[i] > biggest_count:
+  biggest_count = c_counts[i]
+  winner_letter = "C"
+if g_counts[i] > biggest_count:
+  biggest_count = g_counts[i]
+  winner_letter = "G"
+if t_counts[i] > biggest_count:
+  biggest_count = t_counts[i]
+  winner_letter = "T"
+consensus_string = consensus_string + winner_letter
+
+# Prints the counts nicely with spaces
+def print_profile_row(letter, counts_list):
+row_text = ""
+for number in counts_list:
+row_text = row_text + str(number) + " "
+# Removes any extra trailing space at the very end
+print(letter + ": " + row_text.strip())
+
+# Print the final consensus string first
+print(consensus_string)
+
+# Then print out the profile matrix rows
+print_profile_row("A", a_counts)
+print_profile_row("C", c_counts)
+print_profile_row("G", g_counts)
+print_profile_row("T", t_counts)
