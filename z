@@ -1,0 +1,36 @@
+# Put in your Rosalind dataset
+# n is the number of months to run, m is how long they live
+n = X
+m = X
+
+# Using a list to keep track of how many pairs of rabbits there are at each age
+# Position 0 is for newborn rabbits (1 month old). Position 1 is for 2-month-old rabbits, etc
+rabbit_ages = [0] * m
+
+# In the first month, we start with exactly 1 pair of newborns
+rabbit_ages[0] = 1
+
+# Loop from month 2 up to month n
+for month in range(2, n + 1):
+
+# Calculates how many new babies are born
+# Any rabbit that is at least 2 months old, index 1 and up, can reproduce
+new_babies = 0
+for age in range(1, m):
+  new_babies = new_babies + rabbit_ages[age]
+
+# Move the age all the existing rabbits up by 1 month, starting from the back
+# This automatically puts the oldest rabbits at the last index because they die
+for age in range(m - 1, 0, -1):
+  rabbit_ages[age] = rabbit_ages[age - 1]
+
+# Puts the newly born babies into the newborn slot (@ index 0)
+rabbit_ages[0] = new_babies
+
+# Counts up all the rabbit pairs left at the very end
+total_rabbits = 0
+for count in rabbit_ages:
+  total_rabbits = total_rabbits + count
+
+# Print the final answer
+print(total_rabbits)
