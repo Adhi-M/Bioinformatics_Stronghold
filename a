@@ -1,0 +1,69 @@
+# Copy and paste your dataset from Rosalind here
+n = X
+permutation_string = "X"
+
+# Turns the text string into a list of actual numbers
+numbers = []
+for item in permutation_string.split(" "):
+numbers.append(int(item))
+
+# Finds the longest chain
+def find_subsequence(num_list, mode="increasing"):
+size = len(num_list)
+
+# lengths[i] is what will store the length of the longest chain ending at index i
+lengths = [1] * size
+
+# Then parents[i] is what will store the index of the number that came before it in the chain
+parents = [-1] * size
+
+# Loops through each number from left to right
+for i in range(size):
+# Looks at every number that comes BEFORE index i
+for j in range(i):
+
+# Checks if number at i can extend the chain ending at j
+condition = False
+if mode == "increasing" and num_list[i] > num_list[j]:
+condition = True
+elif mode == "decreasing" and num_list[i] < num_list[j]:
+condition = True
+
+if condition:
+# If extending j gives us a longer chain than what i already has
+if lengths[j] + 1 > lengths[i]:
+lengths[i] = lengths[j] + 1
+parents[i] = j
+
+# Then find the index where the absolute longest chain ends
+max_length = 0
+best_index = 0
+for i in range(size):
+if lengths[i] > max_length:
+max_length = lengths[i]
+best_index = i
+
+# Backtracks through the parents array to reconstruct the chain
+result_chain = []
+current_idx = best_index
+while current_idx != -1:
+result_chain.append(num_list[current_idx])
+current_idx = parents[current_idx]
+
+# Flips the list around because we built it backwards from the end
+result_chain.reverse()
+return result_chain
+
+# Runs the function for both increasing and decreasing modes
+increasing_result = find_subsequence(numbers, "increasing")
+decreasing_result = find_subsequence(numbers, "decreasing")
+
+# Prints the numbers neatly with spaces
+def print_nice_row(num_array):
+row_text = ""
+for val in num_array:
+row_text = row_text + str(val) + " "
+print(row_text.strip())
+
+print_nice_row(increasing_result)
+print_nice_row(decreasing_result)
